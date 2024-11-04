@@ -1,0 +1,43 @@
+@if(dataSource){
+<div class="container">
+  <table mat-table [dataSource]="dataSource" matSort matSortActive="id">
+    <!-- Id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>id</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.id }}
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <!-- BirthDate Column -->
+    <ng-container matColumnDef="birthdate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Birth date</th>
+      <td mat-cell *matCellDef="let row">
+        {{ row.birthdate | date : "mediumDate" }}
+      </td>
+    </ng-container>
+
+    <!-- Addres count Column -->
+    <ng-container matColumnDef="addressCount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address count</th>
+      <td mat-cell *matCellDef="let row">{{ row.addresses.length }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns" ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="clientSelected(row.id)"></tr>
+  </table>
+
+  <div class="new-client-button">
+    <button mat-raised-button (click)="addNewClient()">
+      Add new client
+    </button>
+  </div>
+</div>
+} @else {
+<mat-spinner class="mat-spinner"></mat-spinner>
+}

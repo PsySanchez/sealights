@@ -1,0 +1,63 @@
+<div class="client-wrapper">
+  <button mat-raised-button (click)="backToClients()" class="back-button">
+    <mat-icon>arrow_back</mat-icon>back to clients
+  </button>
+  <h4>Add client form</h4>
+  @if(clientForm) {
+  <form [formGroup]="clientForm" class="form">
+    <mat-form-field class="mat-form-field" appearance="outline">
+      <mat-label>Name:</mat-label>
+      <input matInput formControlName="name" type="text" />
+      @if (clientForm.controls['name'].invalid) {
+      <mat-error> Name is requerd </mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="mat-form-field" appearance="outline">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [min]="minDate"
+        [max]="maxDate"
+        [matDatepicker]="picker"
+        formControlName="birthdate"
+      />
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="picker"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+      @if (clientForm.controls['birthdate'].invalid) {
+      <mat-error> Birth date is requerd </mat-error>
+      }
+    </mat-form-field>
+    <div class="address-container">
+      @for(address of clientForm.controls['addresses'].value; track address.id)
+      {
+      <app-address
+        [address]="address"
+        (removedAddress)="removeAddress($event)"
+        (formUpdate)="onFormUpdate($event)"
+      ></app-address>
+      }
+    </div>
+  </form>
+  }
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="addAdress()"
+    [hidden]="hideAddressButton"
+  >
+    Add address
+  </button>
+  <button
+    mat-raised-button
+    color="primary"
+    (click)="onSubmit()"
+    [disabled]="clientForm.invalid"
+    [hidden]="hideAddressButton"
+  >
+    Save
+  </button>
+</div>

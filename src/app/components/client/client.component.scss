@@ -1,0 +1,18 @@
+.client-wrapper {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.address-container {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}

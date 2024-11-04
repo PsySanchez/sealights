@@ -1,0 +1,57 @@
+<div class="address-wrapper">
+  @if(addressForm) {
+  <form [formGroup]="addressForm" class="form">
+    <!-- Name Column -->
+    <mat-form-field class="mat-form-field" appearance="outline">
+      <mat-label>Name:</mat-label>
+      <input matInput formControlName="name" type="text" />
+      @if (addressForm.controls['name'].invalid) {
+      <mat-error> Name is requerd </mat-error>
+      }
+    </mat-form-field>
+    <!-- Country Column -->
+    <mat-form-field class="mat-form-field" appearance="outline">
+      <mat-label>Select country:</mat-label>
+      <select matNativeControl formControlName="countryId">
+        @for (c of countries; track c.id) {
+        <option [value]="c.id">{{ c.name }}</option>
+        }
+      </select>
+      @if (addressForm.controls['countryId'].invalid) {
+      <mat-error> Country is requerd </mat-error>
+      }
+    </mat-form-field>
+    <!-- City Column -->
+    <div class="form-field-action-wrapper">
+      <mat-form-field class="mat-form-field" appearance="outline">
+        <mat-label>Select city:</mat-label>
+        <select matNativeControl formControlName="city">
+          @for (c of cities; track c.id) {
+          <option [value]="c.id">{{ c.name }}</option>
+          }
+        </select>
+
+        @if (addressForm.controls['city'].invalid) {
+        <mat-error> City is requerd </mat-error>
+        }
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="openCityDialog()" [disabled]="!addressForm.controls['countryId'].value">
+        Add city
+      </button>
+    </div>
+    <!-- Street Column -->
+    <mat-form-field class="mat-form-field" appearance="outline">
+      <mat-label>Street:</mat-label>
+      <input matInput formControlName="street" type="text" />
+      @if (addressForm.controls['street'].invalid) {
+      <mat-error> Street is requerd </mat-error>
+      }
+    </mat-form-field>
+  </form>
+  }
+  <button mat-raised-button color="primary" (click)="removeAddress()"
+  [hidden]="hideRemoveButton"
+  >
+    Remove address
+  </button>
+</div>
