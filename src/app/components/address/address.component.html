@@ -35,7 +35,9 @@
         <mat-error> City is requerd </mat-error>
         }
       </mat-form-field>
-      <button mat-raised-button color="primary" (click)="openCityDialog()" [disabled]="!addressForm.controls['countryId'].value">
+      <button mat-flat-button color="primary" (click)="openCityDialog()" [disabled]="!addressForm.controls['countryId'].value"
+      color="accent"
+      >
         Add city
       </button>
     </div>
@@ -49,8 +51,9 @@
     </mat-form-field>
   </form>
   }
-  <button mat-raised-button color="primary" (click)="removeAddress()"
+  <button mat-flat-button color="primary" (click)="removeAddress()"
   [hidden]="hideRemoveButton"
+  color="warn"
   >
     Remove address
   </button>

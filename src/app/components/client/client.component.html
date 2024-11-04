@@ -1,5 +1,5 @@
 <div class="client-wrapper">
-  <button mat-raised-button (click)="backToClients()" class="back-button">
+  <button mat-flat-button (click)="backToClients()" class="back-button">
     <mat-icon>arrow_back</mat-icon>back to clients
   </button>
   <h4>Add client form</h4>
@@ -44,7 +44,7 @@
   </form>
   }
   <button
-    mat-raised-button
+    mat-flat-button
     color="primary"
     (click)="addAdress()"
     [hidden]="hideAddressButton"
@@ -52,7 +52,7 @@
     Add address
   </button>
   <button
-    mat-raised-button
+    mat-flat-button
     color="primary"
     (click)="onSubmit()"
     [disabled]="clientForm.invalid"
